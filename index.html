@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A calmer way to plan meaningful work.">
+  <title>Herea | Make room for what matters</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+    :root {
+      --ink: #19342f;
+      --muted: #61716c;
+      --paper: #f4f0e7;
+      --cream: #fbfaf5;
+      --mint: #dbe9df;
+      --coral: #ed795f;
+      --line: rgba(25, 52, 47, .14);
+      --shadow: 0 24px 70px rgba(25, 52, 47, .12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.5;
+    }
+
+    .page {
+      min-height: 100vh;
+      overflow: hidden;
+      background: radial-gradient(circle at 92% 5%, #e8d5bd 0, transparent 26rem), var(--paper);
+    }
+
+    nav {
+      width: min(1160px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .logo-mark {
+      width: 25px;
+      height: 25px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      font-family: 'Playfair Display', serif;
+      font-size: .9rem;
+      line-height: 1;
+    }
+
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { color: var(--muted); font-size: .9rem; text-decoration: none; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta, .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--cream) !important;
+      padding: 12px 19px;
+      font: inherit;
+      font-size: .88rem;
+      text-decoration: none;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .nav-cta:hover, .hero-cta:hover { background: #2c5149; transform: translateY(-2px); }
+
+    main { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+    .hero {
+      min-height: 650px;
+      padding: 82px 0 100px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(380px, .95fr);
+      gap: 70px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--coral);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ''; width: 30px; height: 1px; background: var(--coral); }
+    h1 {
+      max-width: 650px;
+      margin: 20px 0 23px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 7vw, 6.4rem);
+      font-weight: 600;
+      letter-spacing: -.055em;
+      line-height: .96;
+    }
+    .hero-copy { max-width: 490px; color: var(--muted); font-size: 1.1rem; }
+    .hero-cta { margin-top: 24px; padding: 15px 23px; }
+    .arrow { font-size: 1.1rem; }
+
+    .visual { position: relative; min-height: 450px; }
+    .sun { position: absolute; top: 0; right: 6%; width: 180px; height: 180px; border-radius: 50%; background: #e9b476; opacity: .85; }
+    .portrait {
+      position: absolute;
+      right: 4%;
+      bottom: 0;
+      width: min(82%, 395px);
+      height: 390px;
+      overflow: hidden;
+      border-radius: 200px 200px 18px 18px;
+      background: linear-gradient(145deg, #718f82, #31564e);
+      box-shadow: var(--shadow);
+    }
+    .portrait::before {
+      content: '';
+      position: absolute;
+      width: 220px;
+      height: 300px;
+      left: 86px;
+      bottom: -42px;
+      border-radius: 48% 48% 8% 8%;
+      background: #d98768;
+      transform: rotate(5deg);
+    }
+    .portrait::after {
+      content: '';
+      position: absolute;
+      width: 165px;
+      height: 175px;
+      left: 113px;
+      top: 80px;
+      border-radius: 48% 52% 45% 45%;
+      background: #b96c50;
+      box-shadow: 32px -40px 0 28px #203e39;
+    }
+    .quote-card {
+      position: absolute;
+      z-index: 2;
+      left: 0;
+      bottom: 40px;
+      width: 220px;
+      padding: 22px;
+      border: 1px solid rgba(25, 52, 47, .1);
+      background: rgba(251, 250, 245, .9);
+      box-shadow: 0 15px 40px rgba(25, 52, 47, .12);
+      backdrop-filter: blur(8px);
+    }
+    .quote-card p { margin: 0 0 13px; font-family: 'Playfair Display', serif; font-size: 1.28rem; line-height: 1.1; }
+    .quote-card small { color: var(--muted); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
+
+    .strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      padding: 27px 0;
+      border-top: 1px solid var(--line);
+    }
+    .stat { display: flex; align-items: baseline; gap: 12px; }
+    .stat strong { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 600; }
+    .stat span { color: var(--muted); font-size: .82rem; }
+
+    @media (max-width: 760px) {
+      nav, main { width: min(100% - 36px, 560px); }
+      .nav-links a { display: none; }
+      nav { padding: 19px 0; }
+      .hero { min-height: auto; padding: 68px 0 75px; display: flex; flex-direction: column; gap: 48px; align-items: stretch; }
+      h1 { font-size: clamp(3.4rem, 17vw, 5.2rem); }
+      .hero-copy { font-size: 1rem; }
+      .visual { min-height: 390px; }
+      .portrait { width: 80%; height: 345px; }
+      .portrait::before { left: 55px; }
+      .portrait::after { left: 82px; }
+      .quote-card { bottom: 10px; }
+      .strip { grid-template-columns: 1fr; gap: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <nav aria-label="Primary navigation">
+      <a class="logo" href="#top"><span class="logo-mark">h</span> herea</a>
+      <div class="nav-links">
+        <a href="#story">Our approach</a>
+        <a href="#journal">Journal</a>
+        <a class="nav-cta" href="#start">Begin here <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+
+    <main id="top">
+      <section class="hero" id="story">
+        <div>
+          <span class="eyebrow">A softer way forward</span>
+          <h1>Make room for what matters.</h1>
+          <p class="hero-copy">Herea is a quiet space for clearer thinking, honest reflection, and the small decisions that shape a life you actually want to be living.</p>
+          <a class="hero-cta" id="start" href="#journal">Start exploring <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="visual" aria-label="Abstract portrait illustration">
+          <div class="sun"></div>
+          <div class="portrait"></div>
+          <aside class="quote-card">
+            <p>“Clarity comes when we stop rushing past ourselves.”</p>
+            <small>Herea note / 01</small>
+          </aside>
+        </div>
+      </section>
+
+      <section class="strip" id="journal" aria-label="Herea principles">
+        <div class="stat"><strong>01</strong><span>Notice what is already here</span></div>
+        <div class="stat"><strong>02</strong><span>Choose with intention</span></div>
+        <div class="stat"><strong>03</strong><span>Move at your own rhythm</span></div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
